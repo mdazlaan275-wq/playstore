@@ -54,14 +54,14 @@
     }
     .app-list {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
       gap: 1rem;
       padding: 1rem;
     }
     .app-card {
       background: var(--card-bg);
-      border-radius: 12px;
-      padding: 1rem;
+      border-radius: 16px;
+      padding: 1.2rem;
       box-shadow: 0 4px 12px rgba(0,0,0,0.08);
       display: flex;
       flex-direction: column;
@@ -72,27 +72,37 @@
       transform: translateY(-3px);
       box-shadow: 0 6px 16px rgba(0,0,0,0.12);
     }
+    .app-icon {
+      width: 90px;
+      height: 90px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-bottom: 0.8rem;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
     .app-name {
       font-size: 1.1rem;
-      font-weight: 500;
-      margin: 0.5rem 0;
+      font-weight: 600;
+      margin-bottom: 1rem;
       text-align: center;
     }
     .download-btn {
       background: var(--accent);
       color: white;
       border: none;
-      padding: 0.6rem 1.2rem;
-      border-radius: 25px;
+      padding: 0.8rem 1.5rem;
+      border-radius: 30px;
       cursor: pointer;
-      font-size: 0.95rem;
+      font-size: 1rem;
       display: flex;
       align-items: center;
       font-weight: 500;
       transition: background 0.3s ease;
+      width: 100%;
+      justify-content: center;
     }
     .download-btn i {
-      margin-right: 6px;
+      margin-right: 8px;
     }
     .download-btn:active {
       background: #2e7d32;
@@ -121,11 +131,11 @@
   </div>
 
   <script>
-    // Add your APKs here
+    // Add your APKs here with icons
     const apps = [
-      { name: "Kartik", apk: "Kartik.apk" },
-      { name: "Mafia Gang", apk: "MG.apk" },
-      { name: "Smiley tution center", apk: "apks/STC.apk" }
+      { name: "Smiley Tuition Center", apk: "apks/smiley.apk", icon: "icons/smiley.png" },
+      { name: "GameMaster", apk: "apks/gamemaster.apk", icon: "icons/gamemaster.png" },
+      { name: "UtilityPro", apk: "apks/utilitypro.apk", icon: "icons/utilitypro.png" }
     ];
 
     function displayApps(list) {
@@ -135,6 +145,7 @@
         const card = document.createElement('div');
         card.className = 'app-card';
         card.innerHTML = `
+          <img src="${app.icon}" alt="${app.name}" class="app-icon">
           <span class="app-name">${app.name}</span>
           <a href="${app.apk}" download>
             <button class="download-btn"><i class="fa fa-download"></i> Download</button>
