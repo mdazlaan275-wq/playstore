@@ -117,38 +117,41 @@
   </div>
 
   <div class="app-list" id="appList">
-    <!-- Example app entries -->
-    <div class="app-card">
-      <span class="app-name">CoolApp v1.0</span>
-      <a href="apks/coolapp.apk" download>
-        <button class="download-btn"><i class="fa fa-download"></i> Download</button>
-      </a>
-    </div>
-
-    <div class="app-card">
-      <span class="app-name">GameMaster v2.3</span>
-      <a href="apks/gamemaster.apk" download>
-        <button class="download-btn"><i class="fa fa-download"></i> Download</button>
-      </a>
-    </div>
-
-    <div class="app-card">
-      <span class="app-name">UtilityPro v5.1</span>
-      <a href="apks/utilitypro.apk" download>
-        <button class="download-btn"><i class="fa fa-download"></i> Download</button>
-      </a>
-    </div>
+    <!-- Your APKs will appear here -->
   </div>
 
   <script>
-    function searchApps() {
-      const query = document.getElementById('searchInput').value.toLowerCase();
-      const cards = document.querySelectorAll('.app-card');
-      cards.forEach(card => {
-        const name = card.querySelector('.app-name').textContent.toLowerCase();
-        card.style.display = name.includes(query) ? 'flex' : 'none';
+    // Add your APKs here
+    const apps = [
+      { name: "Kartik", apk: "Kartik.apk" },
+      { name: "Mafia Gang", apk: "MG.apk" },
+      { name: "Smiley tution center", apk: "apks/STC.apk" }
+    ];
+
+    function displayApps(list) {
+      const container = document.getElementById('appList');
+      container.innerHTML = '';
+      list.forEach(app => {
+        const card = document.createElement('div');
+        card.className = 'app-card';
+        card.innerHTML = `
+          <span class="app-name">${app.name}</span>
+          <a href="${app.apk}" download>
+            <button class="download-btn"><i class="fa fa-download"></i> Download</button>
+          </a>
+        `;
+        container.appendChild(card);
       });
     }
+
+    function searchApps() {
+      const query = document.getElementById('searchInput').value.toLowerCase();
+      const filtered = apps.filter(app => app.name.toLowerCase().includes(query));
+      displayApps(filtered);
+    }
+
+    // Initial load
+    displayApps(apps);
   </script>
 </body>
 </html>
